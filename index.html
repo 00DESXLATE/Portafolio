@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #060f1c;
-    --bg-panel: #0a1826;
-    --line: #1b3247;
-    --ink: #edf1f6;
-    --ink-dim: #7f96af;
-    --signal: #4f9fdb;
-    --signal-dim: #16293c;
-    --status: #5aa9b0;
-    --status-bg: #0d1f24;
-    --status-line: #1c3438;
+    --bg: #17191b;
+    --bg-panel: #1e2123;
+    --line: #34383b;
+    --ink: #ffffff;
+    --ink-dim: #9aa0a4;
+    --signal: #8a5a2b;
+    --signal-dim: #241a10;
+    --status: #8a5a2b;
+    --status-bg: #1e150c;
+    --status-line: #4a3520;
     --mono: 'IBM Plex Mono', 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
     --sans: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
   }
@@ -157,6 +157,23 @@
     margin-top:6px; display:block;
   }
 
+  /* ---------- certifiers ---------- */
+  .certifiers{padding:44px 0; border-bottom:1px solid var(--line); text-align:center;}
+  .cert-caption{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em;
+    color:var(--ink-dim); margin-bottom:24px; text-transform:uppercase;
+  }
+  .cert-row{
+    display:flex; justify-content:center; align-items:center;
+    gap:44px; flex-wrap:wrap;
+  }
+  .cert-name{
+    font-family:var(--sans); font-weight:600; font-size:15px;
+    color:var(--ink-dim); opacity:0.8;
+    transition:opacity .15s, color .15s;
+  }
+  .cert-name:hover{opacity:1; color:var(--ink);}
+
   /* ---------- contact ---------- */
   footer{padding:64px 0 80px;}
   .contact-title{font-size:26px; font-weight:600; max-width:14ch; margin-bottom:28px;}
@@ -176,6 +193,7 @@
     .sec-head{grid-template-columns:40px 1fr;}
     h1{max-width:none;}
     .nav-links{gap:16px; font-size:13px;}
+    .cert-row{gap:22px;}
   }
 </style>
 </head>
@@ -279,35 +297,35 @@
         <desc id="diagDesc">El Emisor envía un mensaje de daño a través de una interfaz común, sin conocer el tipo real del Receptor, que puede ser un Personaje o un Destructible.</desc>
 
         <!-- emitter -->
-        <rect x="20" y="80" width="150" height="60" rx="3" fill="none" stroke="#1b3247" stroke-width="1.5"/>
-        <text x="95" y="105" fill="#edf1f6" font-size="13" text-anchor="middle">Emisor</text>
+        <rect x="20" y="80" width="150" height="60" rx="3" fill="none" stroke="#34383b" stroke-width="1.5"/>
+        <text x="95" y="105" fill="#ffffff" font-size="13" text-anchor="middle">Emisor</text>
         <text x="95" y="123" fill="#8ea3ba" font-size="10.5" text-anchor="middle">(ataque)</text>
 
         <!-- arrow to interface -->
-        <line x1="170" y1="110" x2="288" y2="110" stroke="#4f9fdb" stroke-width="1.5"/>
-        <polygon points="288,110 278,105 278,115" fill="#4f9fdb"/>
-        <text x="228" y="98" fill="#4f9fdb" font-size="10.5" text-anchor="middle">DamageMessage</text>
+        <line x1="170" y1="110" x2="288" y2="110" stroke="#8a5a2b" stroke-width="1.5"/>
+        <polygon points="288,110 278,105 278,115" fill="#8a5a2b"/>
+        <text x="228" y="98" fill="#8a5a2b" font-size="10.5" text-anchor="middle">DamageMessage</text>
 
         <!-- interface node -->
-        <rect x="290" y="65" width="180" height="90" rx="3" fill="#0a1826" stroke="#4f9fdb" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="380" y="100" fill="#4f9fdb" font-size="13" text-anchor="middle">IDamageable</text>
+        <rect x="290" y="65" width="180" height="90" rx="3" fill="#1e2123" stroke="#8a5a2b" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="380" y="100" fill="#8a5a2b" font-size="13" text-anchor="middle">IDamageable</text>
         <text x="380" y="118" fill="#8ea3ba" font-size="10.5" text-anchor="middle">UInterface</text>
         <text x="380" y="136" fill="#8ea3ba" font-size="10.5" text-anchor="middle">sin Cast directo</text>
 
         <!-- arrows to receivers -->
-        <line x1="470" y1="95" x2="588" y2="55" stroke="#1b3247" stroke-width="1.5"/>
-        <polygon points="588,55 578,54 581,63" fill="#1b3247"/>
-        <line x1="470" y1="125" x2="588" y2="165" stroke="#1b3247" stroke-width="1.5"/>
-        <polygon points="588,165 579,160 581,169" fill="#1b3247"/>
+        <line x1="470" y1="95" x2="588" y2="55" stroke="#34383b" stroke-width="1.5"/>
+        <polygon points="588,55 578,54 581,63" fill="#34383b"/>
+        <line x1="470" y1="125" x2="588" y2="165" stroke="#34383b" stroke-width="1.5"/>
+        <polygon points="588,165 579,160 581,169" fill="#34383b"/>
 
         <!-- receiver 1 -->
-        <rect x="590" y="25" width="150" height="55" rx="3" fill="none" stroke="#1b3247" stroke-width="1.5"/>
-        <text x="665" y="48" fill="#edf1f6" font-size="12.5" text-anchor="middle">Personaje</text>
+        <rect x="590" y="25" width="150" height="55" rx="3" fill="none" stroke="#34383b" stroke-width="1.5"/>
+        <text x="665" y="48" fill="#ffffff" font-size="12.5" text-anchor="middle">Personaje</text>
         <text x="665" y="65" fill="#8ea3ba" font-size="10" text-anchor="middle">recibe daño</text>
 
         <!-- receiver 2 -->
-        <rect x="590" y="140" width="150" height="55" rx="3" fill="none" stroke="#1b3247" stroke-width="1.5"/>
-        <text x="665" y="163" fill="#edf1f6" font-size="12.5" text-anchor="middle">Destructible</text>
+        <rect x="590" y="140" width="150" height="55" rx="3" fill="none" stroke="#34383b" stroke-width="1.5"/>
+        <text x="665" y="163" fill="#ffffff" font-size="12.5" text-anchor="middle">Destructible</text>
         <text x="665" y="180" fill="#8ea3ba" font-size="10" text-anchor="middle">recibe daño</text>
       </svg>
       <p class="diagram-caption">el emisor nunca conoce el tipo concreto del receptor — solo la interfaz</p>
@@ -400,6 +418,17 @@
         </p>
         <span class="note-flag">Video: grabación disponible, pendiente de subir en mejor calidad</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="certifiers">
+  <div class="wrap">
+    <div class="cert-caption">Certificado por</div>
+    <div class="cert-row">
+      <span class="cert-name">Universidad Bernardo O'Higgins</span>
+      <span class="cert-name">VirtualProduction.es Academy</span>
+      <span class="cert-name">Udemy</span>
     </div>
   </div>
 </section>
