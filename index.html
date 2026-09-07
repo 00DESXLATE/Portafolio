@@ -78,7 +78,21 @@
     font-family:var(--mono); font-size:13px; color:var(--available);
     display:flex; align-items:center; gap:10px; margin-bottom:28px;
   }
-  .hero-tag .dot{width:7px; height:7px; border-radius:50%; background:var(--available); box-shadow:0 0 0 3px var(--available-dim);}
+  .hero-tag .dot{
+    position:relative;
+    width:7px; height:7px; border-radius:50%;
+    background:var(--available); box-shadow:0 0 0 3px var(--available-dim);
+  }
+  .hero-tag .dot::after{
+    content:''; position:absolute; inset:-3px; border-radius:50%;
+    background:var(--available); opacity:0.55;
+    animation:dot-pulse 2s ease-out infinite;
+  }
+  @keyframes dot-pulse{
+    0%{transform:scale(1); opacity:0.55;}
+    70%{transform:scale(2.6); opacity:0;}
+    100%{transform:scale(2.6); opacity:0;}
+  }
   h1{
     font-family:var(--sans); font-weight:600;
     font-size:clamp(34px, 5.2vw, 54px);
@@ -183,9 +197,9 @@
   }
   .cert-item{
     display:flex; flex-direction:column; align-items:center; gap:8px;
-    opacity:0.85; transition:opacity .15s;
+    opacity:0.85; transition:opacity .2s, transform .2s;
   }
-  .cert-item:hover{opacity:1;}
+  .cert-item:hover{opacity:1; transform:scale(1.12);}
   .cert-logo{height:52px; width:auto; display:block; object-fit:contain;}
   .cert-sub{
     font-family:var(--mono); font-size:10.5px; color:var(--ink-dim);
@@ -206,6 +220,7 @@
   .contact-row .v{font-size:15px;}
 
   @media (max-width:720px){
+    body{background-attachment:scroll;}
     .about-grid{grid-template-columns:1fr;}
     .proj-notes{grid-template-columns:1fr;}
     .sec-head{grid-template-columns:40px 1fr;}
