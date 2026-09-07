@@ -258,6 +258,9 @@
   }
   .cert-item:hover{opacity:1; transform:scale(1.12);}
   .cert-logo{height:52px; width:auto; display:block; object-fit:contain;}
+  .cert-logo-light{display:none;}
+  html[data-theme="light"] .cert-logo-dark{display:none;}
+  html[data-theme="light"] .cert-logo-light{display:block;}
   .cert-sub{
     font-family:var(--mono); font-size:10.5px; color:var(--ink-dim);
     letter-spacing:0.03em;
@@ -582,16 +585,20 @@
     <div class="cert-caption">Certificado por</div>
     <div class="cert-row">
       <div class="cert-item">
-        <img class="cert-logo" src="assets/ubo.png" alt="Universidad Bernardo O'Higgins">
+        <img class="cert-logo cert-logo-dark" src="assets/ubo.png" alt="Universidad Bernardo O'Higgins">
+        <img class="cert-logo cert-logo-light" src="assets/ubo_B.png" alt="Universidad Bernardo O'Higgins">
       </div>
       <div class="cert-item">
-        <img class="cert-logo" src="assets/unreal-training.png" alt="Unreal Authorized Training Partner">
+        <img class="cert-logo cert-logo-dark" src="assets/unreal-training.png" alt="Unreal Authorized Training Partner">
+        <img class="cert-logo cert-logo-light" src="assets/unreal-training_B.png" alt="Unreal Authorized Training Partner">
       </div>
       <div class="cert-item">
-        <img class="cert-logo" src="assets/udemy.png" alt="Udemy">
+        <img class="cert-logo cert-logo-dark" src="assets/udemy.png" alt="Udemy">
+        <img class="cert-logo cert-logo-light" src="assets/udemy_B.png" alt="Udemy">
       </div>
       <div class="cert-item">
-        <img class="cert-logo" src="assets/oxford.png" alt="Oxford University Press">
+        <img class="cert-logo cert-logo-dark" src="assets/oxford.png" alt="Oxford University Press">
+        <img class="cert-logo cert-logo-light" src="assets/oxford_B.png" alt="Oxford University Press">
       </div>
     </div>
   </div>
