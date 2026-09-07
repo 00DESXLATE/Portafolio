@@ -529,18 +529,11 @@
       <p class="diagram-caption">el emisor nunca conoce el tipo concreto del receptor — solo la interfaz</p>
     </div>
 
-    <div class="proj-images">
-      <figure class="code-shot">
-        <img class="code-img-dark" src="assets/DamageSystemComponent.png" alt="Fragmento de HandleIncomingDamage en DamageSystemComponent.cpp">
-        <img class="code-img-light" src="assets/DamageSystemComponent_L.png" alt="Fragmento de HandleIncomingDamage en DamageSystemComponent.cpp">
-        <figcaption>HandleIncomingDamage — lógica de invencibilidad, bloqueo y stun</figcaption>
-      </figure>
-      <figure class="code-shot code-shot--types">
-        <img class="code-img-dark" src="assets/DamageSystemType.png" alt="Enums EDamageType y EMagicDamage en DamageSystemTypes.h">
-        <img class="code-img-light" src="assets/DamageSystemType_L.png" alt="Enums EDamageType y EMagicDamage en DamageSystemTypes.h">
-        <figcaption>EDamageType / EMagicDamage — tipos de daño y subtipos mágicos</figcaption>
-      </figure>
-    </div>
+    <figure class="code-shot" style="margin-bottom:36px;">
+      <img class="code-img-dark" src="assets/DamageSystemComponent.png" alt="Fragmento de HandleIncomingDamage en DamageSystemComponent.cpp">
+      <img class="code-img-light" src="assets/DamageSystemComponent_L.png" alt="Fragmento de HandleIncomingDamage en DamageSystemComponent.cpp">
+      <figcaption id="code-cap-component">HandleIncomingDamage — lógica de invencibilidad, bloqueo y stun</figcaption>
+    </figure>
 
     <div class="proj-notes">
       <div class="note">
@@ -578,6 +571,12 @@
         <span class="note-flag">Repo / video de demostración: próximamente</span>
       </div>
     </div>
+
+    <figure class="code-shot code-shot--types" style="margin-top:32px;">
+      <img class="code-img-dark" src="assets/DamageSystemType.png" alt="Enums EDamageType y EMagicDamage en DamageSystemTypes.h">
+      <img class="code-img-light" src="assets/DamageSystemType_L.png" alt="Enums EDamageType y EMagicDamage en DamageSystemTypes.h">
+      <figcaption id="code-cap-types">EDamageType / EMagicDamage — tipos de daño y subtipos mágicos</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -774,7 +773,7 @@
       navAbout: '.nav-links a:nth-child(1)', navProject: '.nav-links a:nth-child(2)', navVfx: '.nav-links a:nth-child(3)', navContact: '.nav-links a:nth-child(4)',
       available: '.hero-tag', heroSub: '.hero-sub', aboutTitle: '#about h2', aboutP1: '#about .about-body p:nth-child(1)', aboutP2: '#about .about-body p:nth-child(2)', certTitle: '#about h3',
       projectTitle: '#proyecto h2', projectStatus: '#proyecto .proj-status', projectLead: '#proyecto .proj-lede', damageCaption: '#proyecto .diagram-caption',
-      codeCap1: '#proyecto .code-shot:nth-child(1) figcaption', codeCap2: '#proyecto .code-shot:nth-child(2) figcaption',
+      codeCap1: '#code-cap-component', codeCap2: '#code-cap-types',
       solves: '#proyecto .note:nth-child(1) h4', solvesP: '#proyecto .note:nth-child(1) p', scalability: '#proyecto .note:nth-child(2) h4', scalabilityP: '#proyecto .note:nth-child(2) p',
       elemental: '#proyecto .note:nth-child(3) h4', elementalP: '#proyecto .note:nth-child(3) p', built: '#proyecto .note:nth-child(4) h4', builtP: '#proyecto .note:nth-child(4) p', repo: '#proyecto .note:nth-child(4) .note-flag',
       otherProject: '#vfx h2', vfxStatus: '#vfx .proj-status', vfxTitle: '#vfx .proj-title', vfxLead: '#vfx .proj-lede', howWorks: '#vfx .note:nth-child(1) h4', howWorksP: '#vfx .note:nth-child(1) p', polish: '#vfx .note:nth-child(2) h4', polishP: '#vfx .note:nth-child(2) p', video: '#vfx .note:nth-child(2) .note-flag', certified: '.cert-caption', contact: '.contact-title'
