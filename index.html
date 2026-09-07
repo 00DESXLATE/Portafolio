@@ -250,9 +250,10 @@
 
   /* ---------- project code shots ---------- */
   .proj-images{
-    display:flex;
-    flex-direction:column;
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
     gap:28px;
+    align-items:start;
     margin-bottom:36px;
   }
   .code-shot{
@@ -265,11 +266,10 @@
     width:100%;
     height:auto;
     border-radius:10px;
-    border:1px solid var(--line);
   }
   /* Types image is taller/narrower — keep readable, don't stretch full width */
   .code-shot--types{
-    max-width:420px;
+    max-width:100%;
   }
   .code-shot .code-img-dark{display:block;}
   .code-shot .code-img-light{display:none;}
@@ -321,6 +321,7 @@
   @media (max-width:720px){
     .about-grid{grid-template-columns:1fr;}
     .proj-notes{grid-template-columns:1fr;}
+    .proj-images{grid-template-columns:1fr;}
     .sec-head{grid-template-columns:40px 1fr;}
     h1{max-width:none;}
     .nav-links{gap:16px; font-size:13px;}
