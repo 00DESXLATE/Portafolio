@@ -165,14 +165,20 @@
   }
   .cert-row{
     display:flex; justify-content:center; align-items:center;
-    gap:44px; flex-wrap:wrap;
+    gap:48px; flex-wrap:wrap;
   }
-  .cert-name{
-    font-family:var(--sans); font-weight:600; font-size:15px;
-    color:var(--ink-dim); opacity:0.8;
-    transition:opacity .15s, color .15s;
+  .cert-item{
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    opacity:0.85; transition:opacity .15s;
   }
-  .cert-name:hover{opacity:1; color:var(--ink);}
+  .cert-item:hover{opacity:1;}
+  .cert-logo{height:34px; width:auto; display:block; object-fit:contain;}
+  .cert-chip{background:#ffffff; padding:10px 16px; border-radius:6px;}
+  .cert-chip .cert-logo{height:22px;}
+  .cert-sub{
+    font-family:var(--mono); font-size:10.5px; color:var(--ink-dim);
+    letter-spacing:0.03em;
+  }
 
   /* ---------- contact ---------- */
   footer{padding:64px 0 80px;}
@@ -193,7 +199,7 @@
     .sec-head{grid-template-columns:40px 1fr;}
     h1{max-width:none;}
     .nav-links{gap:16px; font-size:13px;}
-    .cert-row{gap:22px;}
+    .cert-row{gap:26px;}
   }
 </style>
 </head>
@@ -426,9 +432,19 @@
   <div class="wrap">
     <div class="cert-caption">Certificado por</div>
     <div class="cert-row">
-      <span class="cert-name">Universidad Bernardo O'Higgins</span>
-      <span class="cert-name">VirtualProduction.es Academy</span>
-      <span class="cert-name">Udemy</span>
+      <div class="cert-item">
+        <img class="cert-logo" src="assets/ubo.png" alt="Universidad Bernardo O'Higgins">
+      </div>
+      <div class="cert-item">
+        <img class="cert-logo" src="assets/unreal-training.png" alt="Unreal Authorized Training Partner">
+        <span class="cert-sub">VirtualProduction.es Academy</span>
+      </div>
+      <div class="cert-item cert-chip">
+        <img class="cert-logo" src="assets/udemy.png" alt="Udemy">
+      </div>
+      <div class="cert-item cert-chip">
+        <img class="cert-logo" src="assets/oxford.png" alt="Oxford University Press">
+      </div>
     </div>
   </div>
 </section>
