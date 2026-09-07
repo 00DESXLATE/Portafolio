@@ -250,7 +250,9 @@
 
   /* ---------- project code shots ---------- */
   .proj-images{
-    display:grid; grid-template-columns:1fr 1fr; gap:18px;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
     margin-bottom:36px;
   }
   .code-shot{
@@ -264,6 +266,10 @@
     height:auto;
     border-radius:10px;
     border:1px solid var(--line);
+  }
+  /* Types image is taller/narrower — keep readable, don't stretch full width */
+  .code-shot--types{
+    max-width:420px;
   }
   .code-shot .code-img-dark{display:block;}
   .code-shot .code-img-light{display:none;}
@@ -315,7 +321,6 @@
   @media (max-width:720px){
     .about-grid{grid-template-columns:1fr;}
     .proj-notes{grid-template-columns:1fr;}
-    .proj-images{grid-template-columns:1fr;}
     .sec-head{grid-template-columns:40px 1fr;}
     h1{max-width:none;}
     .nav-links{gap:16px; font-size:13px;}
@@ -529,7 +534,7 @@
         <img class="code-img-light" src="assets/DamageSystemComponent_L.png" alt="Fragmento de HandleIncomingDamage en DamageSystemComponent.cpp">
         <figcaption>HandleIncomingDamage — lógica de invencibilidad, bloqueo y stun</figcaption>
       </figure>
-      <figure class="code-shot">
+      <figure class="code-shot code-shot--types">
         <img class="code-img-dark" src="assets/DamageSystemType.png" alt="Enums EDamageType y EMagicDamage en DamageSystemTypes.h">
         <img class="code-img-light" src="assets/DamageSystemType_L.png" alt="Enums EDamageType y EMagicDamage en DamageSystemTypes.h">
         <figcaption>EDamageType / EMagicDamage — tipos de daño y subtipos mágicos</figcaption>
