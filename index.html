@@ -79,43 +79,20 @@
     display:flex; align-items:center; gap:10px; margin-bottom:28px;
   }
   .hero-tag .dot{
-  position:relative;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--available);
-  box-shadow:0 0 0 3px var(--available-dim);
-}
+    position:relative;
+    width:7px; height:7px; border-radius:50%;
+    background:var(--available); box-shadow:0 0 0 3px var(--available-dim);
+  }
   .hero-tag .dot::after{
-  content:'';
-  position:absolute;
-  width:7px;
-  height:7px;
-  top:50%;
-  left:50%;
-  border-radius:50%;
-  background:var(--available);
-  opacity:0.55;
-  transform:translate(-50%, -50%) scale(1);
-  transform-origin:center center;
-  animation:dot-pulse 2s ease-out infinite;
-}
+    content:''; position:absolute; inset:-3px; border-radius:50%;
+    background:var(--available); opacity:0.55;
+    animation:dot-pulse 2s ease-out infinite;
+  }
   @keyframes dot-pulse{
-  0%{
-    transform:translate(-50%, -50%) scale(1);
-    opacity:0.55;
+    0%{transform:scale(1); opacity:0.55;}
+    70%{transform:scale(2.6); opacity:0;}
+    100%{transform:scale(2.6); opacity:0;}
   }
-
-  70%{
-    transform:translate(-50%, -50%) scale(2.6);
-    opacity:0;
-  }
-
-  100%{
-    transform:translate(-50%, -50%) scale(2.6);
-    opacity:0;
-  }
-}
   h1{
     font-family:var(--sans); font-weight:600;
     font-size:clamp(34px, 5.2vw, 54px);
@@ -252,6 +229,25 @@
     .cert-row{gap:26px;}
     .cert-logo{height:38px;}
   }
+
+  /* ---------- language switcher ---------- */
+  .lang-switch{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:42px; height:30px; padding:0 9px;
+    border:1px solid var(--line); border-radius:3px;
+    background:transparent; color:var(--ink-dim);
+    font-family:var(--mono); font-size:11px; font-weight:500;
+    letter-spacing:.04em; cursor:pointer;
+    transition:color .15s, border-color .15s, background .15s;
+  }
+  .lang-switch:hover{color:var(--ink); border-color:var(--signal); background:var(--signal-dim);}
+  .nav-links{align-items:center;}
+  @media (max-width:560px){
+    nav .wrap{height:54px;}
+    .nav-links{gap:15px; font-size:12px;}
+    .lang-switch{min-width:38px; height:28px; padding:0 7px;}
+  }
+
 </style>
 </head>
 <body>
@@ -264,6 +260,7 @@
       <a href="#proyecto">Proyecto</a>
       <a href="#vfx">VFX</a>
       <a href="#contacto">Contacto</a>
+      <button class="lang-switch" id="langToggle" type="button" aria-label="Cambiar idioma">EN</button>
     </div>
   </div>
 </nav>
@@ -515,5 +512,97 @@
   </div>
 </footer>
 
+<script>
+  (() => {
+    const translations = {
+      es: {
+        navAbout: 'Sobre mí', navProject: 'Proyecto', navVfx: 'VFX', navContact: 'Contacto',
+        available: 'DISPONIBLE PARA OPORTUNIDADES',
+        heroSub: 'Programador de gameplay en C++ para Unreal Engine. Diseño arquitecturas desacopladas y de bajo consumo de memoria — sistemas que se sienten simples de usar desde Blueprints, aunque no lo sean por dentro.',
+        aboutTitle: 'Sobre mí',
+        aboutP1: 'Me especializo en <strong>optimización y creación de interfaces modulares para mecánicas en C++</strong> dentro de Unreal Engine. Lo que más me interesa no es que un sistema funcione, sino que funcione con el menor costo posible: menos referencias duras, menos acoplamiento, menos memoria desperdiciada.',
+        aboutP2: 'Vengo formándome con certificaciones en C++, creación e integración de MetaHumans, y producción virtual ICVFX en Unreal Engine. Mi objetivo es incorporarme a un estudio que construya con este motor — Kojima Productions y CD Projekt Red son referentes que sigo de cerca.',
+        certTitle: 'certificaciones',
+        projectTitle: 'Proyecto destacado', projectStatus: 'EN DESARROLLO',
+        projectLead: 'Sistema de salud y daño modular construido con UInterfaces en Unreal Engine 5. El emisor de un ataque solo envía el mensaje de daño — nunca necesita saber si el receptor es un personaje, un destructible, o cualquier otra cosa. Está diseñado como un molde escalable, pensado desde la base para servir como fundación de combate de un RPG souls-like, pero reutilizable en distintos tipos de proyecto.',
+        damageCaption: 'el emisor nunca conoce el tipo concreto del receptor — solo la interfaz',
+        solves: 'Qué resuelve', solvesP: 'Elimina los Casts directos y, con ellos, todas las referencias duras en memoria entre sistemas que antes debían conocerse entre sí.',
+        scalability: 'Escalabilidad', scalabilityP: 'Se separa en tres capas: datos (structs y enums), contrato (interfaz con funciones <code>BlueprintNativeEvent</code>) e implementación (un <code>UActorComponent</code>). Cualquier Actor se vuelve dañable solo agregando el componente e implementando la interfaz — sin forzar una jerarquía de herencia.',
+        elemental: 'Daño elemental y estados', elementalP: 'Cada golpe es un <code>FDamageInfo</code> con tipo de daño (físico, fuego, rayo, oscuridad o magia — con hechicería, milagros y piromancia como subtipos) y flags independientes para bloqueo, parry e interrupción forzada, igual que en un souls-like.',
+        built: 'Cómo está construido', builtP: 'Base lógica en C++ expuesta a Blueprints, con arquitectura desacoplada pensada para minimizar el consumo de memoria del sistema.',
+        repo: 'Repo / video de demostración: próximamente',
+        otherProject: 'Otro proyecto', vfxStatus: 'COMPLETADO',
+        vfxTitle: 'VFX: Beam progresivo de anclaje',
+        vfxLead: 'Sistema de VFX en Niagara: al presionar un botón, se lanza un haz desde la mano del personaje hasta un punto de anclaje fijo en el mundo. El haz se extiende progresivamente, ajusta su longitud en tiempo real según la distancia, y se desvanece de forma suave al terminar — inspirado en el grappling hook de <em>Clair Obscur: Expedition 33</em>.',
+        howWorks: 'Cómo funciona', howWorksP: 'El origen se captura una sola vez, en el socket de la mano, al momento del input — no sigue a la mano después. En cada Tick se calcula la distancia real hasta el punto de anclaje y se pasa a Niagara como parámetro, junto con un <code>BeamProgress</code> interpolado que controla la extensión progresiva del haz.',
+        polish: 'Detalles de pulido', polishP: 'Al spawnear el sistema, <code>BeamEnd</code> se iguala a <code>BeamStart</code> de inmediato para evitar el artefacto de primer frame (el haz apuntando al origen del mundo). Al terminar, se llama <code>Deactivate</code> en vez de destruir el componente, para que el fade de salida ocurra con su propia curva de vida.',
+        video: 'Video: grabación disponible, pendiente de subir en mejor calidad',
+        certified: 'Certificado por', contact: 'Hablemos'
+      },
+      en: {
+        navAbout: 'About me', navProject: 'Project', navVfx: 'VFX', navContact: 'Contact',
+        available: 'AVAILABLE FOR OPPORTUNITIES',
+        heroSub: 'C++ gameplay programmer for Unreal Engine. I design decoupled, memory-efficient architectures — systems that feel simple to use from Blueprints, even when they are not simple under the hood.',
+        aboutTitle: 'About me',
+        aboutP1: 'I specialize in <strong>optimization and modular interfaces for C++ gameplay systems</strong> in Unreal Engine. What matters most to me is not simply making a system work, but making it work at the lowest possible cost: fewer hard references, less coupling, less wasted memory.',
+        aboutP2: 'I have been building my skills through certifications in C++, MetaHuman creation and integration, and ICVFX virtual production in Unreal Engine. My goal is to join a studio that builds with this engine — Kojima Productions and CD Projekt Red are two studios I closely follow.',
+        certTitle: 'certifications',
+        projectTitle: 'Featured project', projectStatus: 'IN DEVELOPMENT',
+        projectLead: 'A modular health and damage system built with UInterfaces in Unreal Engine 5. An attacker only sends the damage message — it never needs to know whether the receiver is a character, a destructible, or anything else. It is designed as a scalable template, built from the ground up to serve as a combat foundation for a souls-like RPG while remaining reusable across different types of projects.',
+        damageCaption: 'the sender never knows the receiver’s concrete type — only the interface',
+        solves: 'What it solves', solvesP: 'It eliminates direct Casts and, with them, the hard memory references between systems that previously had to know about each other.',
+        scalability: 'Scalability', scalabilityP: 'It is split into three layers: data (structs and enums), contract (an interface with <code>BlueprintNativeEvent</code> functions), and implementation (a <code>UActorComponent</code>). Any Actor can become damageable simply by adding the component and implementing the interface — without forcing an inheritance hierarchy.',
+        elemental: 'Elemental damage & states', elementalP: 'Each hit is an <code>FDamageInfo</code> containing a damage type (physical, fire, lightning, dark, or magic — with sorcery, miracles, and pyromancy as subtypes) and independent flags for blocking, parrying, and forced interruption, following a souls-like approach.',
+        built: 'How it is built', builtP: 'Core logic in C++ exposed to Blueprints, with a decoupled architecture designed to minimize the system’s memory footprint.',
+        repo: 'Repository / demo video: coming soon',
+        otherProject: 'Another project', vfxStatus: 'COMPLETED',
+        vfxTitle: 'VFX: Progressive anchor beam',
+        vfxLead: 'A Niagara VFX system: when a button is pressed, a beam is launched from the character’s hand to a fixed anchor point in the world. The beam extends progressively, adjusts its length in real time based on distance, and smoothly fades out at the end — inspired by the grappling hook in <em>Clair Obscur: Expedition 33</em>.',
+        howWorks: 'How it works', howWorksP: 'The origin is captured once, at the hand socket, when the input occurs — it does not follow the hand afterward. On each Tick, the actual distance to the anchor point is calculated and passed to Niagara as a parameter, together with an interpolated <code>BeamProgress</code> that controls the beam’s progressive extension.',
+        polish: 'Polish details', polishP: 'When the system is spawned, <code>BeamEnd</code> is immediately set to <code>BeamStart</code> to prevent the first-frame artifact (the beam pointing at the world origin). When it finishes, <code>Deactivate</code> is called instead of destroying the component, allowing the fade-out to follow its own lifetime curve.',
+        video: 'Video: recording available, higher-quality upload pending',
+        certified: 'Certified by', contact: 'Let’s talk'
+      }
+    };
+
+    const map = {
+      navAbout: '.nav-links a:nth-child(1)', navProject: '.nav-links a:nth-child(2)', navVfx: '.nav-links a:nth-child(3)', navContact: '.nav-links a:nth-child(4)',
+      available: '.hero-tag', heroSub: '.hero-sub', aboutTitle: '#about h2', aboutP1: '#about .about-body p:nth-child(1)', aboutP2: '#about .about-body p:nth-child(2)', certTitle: '#about h3',
+      projectTitle: '#proyecto h2', projectStatus: '#proyecto .proj-status', projectLead: '#proyecto .proj-lede', damageCaption: '#proyecto .diagram-caption',
+      solves: '#proyecto .note:nth-child(1) h4', solvesP: '#proyecto .note:nth-child(1) p', scalability: '#proyecto .note:nth-child(2) h4', scalabilityP: '#proyecto .note:nth-child(2) p',
+      elemental: '#proyecto .note:nth-child(3) h4', elementalP: '#proyecto .note:nth-child(3) p', built: '#proyecto .note:nth-child(4) h4', builtP: '#proyecto .note:nth-child(4) p', repo: '#proyecto .note:nth-child(4) .note-flag',
+      otherProject: '#vfx h2', vfxStatus: '#vfx .proj-status', vfxTitle: '#vfx .proj-title', vfxLead: '#vfx .proj-lede', howWorks: '#vfx .note:nth-child(1) h4', howWorksP: '#vfx .note:nth-child(1) p', polish: '#vfx .note:nth-child(2) h4', polishP: '#vfx .note:nth-child(2) p', video: '#vfx .note:nth-child(2) .note-flag', certified: '.cert-caption', contact: '.contact-title'
+    };
+
+    const originalDotText = document.querySelector('.hero-tag').textContent.trim();
+    function setLanguage(lang) {
+      const t = translations[lang];
+      Object.entries(map).forEach(([key, selector]) => {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        if (key === 'available') {
+          el.lastChild.textContent = ' ' + t[key];
+        } else {
+          el.innerHTML = t[key];
+        }
+      });
+      document.documentElement.lang = lang;
+      document.title = lang === 'en'
+        ? 'Martín Ignacio Zúñiga Ávila — Unreal Engine Programmer'
+        : 'Martín Ignacio Zúñiga Ávila — Programador Unreal Engine';
+      const toggle = document.getElementById('langToggle');
+      toggle.textContent = lang === 'es' ? 'EN' : 'ES';
+      toggle.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Cambiar a español');
+      toggle.title = lang === 'es' ? 'Switch to English' : 'Cambiar a español';
+      localStorage.setItem('portfolioLanguage', lang);
+    }
+
+    const saved = localStorage.getItem('portfolioLanguage');
+    setLanguage(saved === 'en' ? 'en' : 'es');
+    document.getElementById('langToggle').addEventListener('click', () => {
+      setLanguage(document.documentElement.lang === 'es' ? 'en' : 'es');
+    });
+  })();
+</script>
 </body>
 </html>
