@@ -78,6 +78,15 @@
     background-position:center;
     background-repeat:no-repeat;
     transition:filter .25s ease, opacity .25s ease;
+    animation:bg-drift 28s ease-in-out infinite;
+    transform-origin:center center;
+  }
+  @keyframes bg-drift{
+    0%{background-position:50% 50%; transform:scale(1.04);}
+    25%{background-position:59% 44%; transform:scale(1.055);}
+    50%{background-position:50% 58%; transform:scale(1.04);}
+    75%{background-position:41% 46%; transform:scale(1.06);}
+    100%{background-position:50% 50%; transform:scale(1.04);}
   }
 
   a{color:inherit;}
