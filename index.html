@@ -257,6 +257,21 @@
     margin-top:6px; display:block;
   }
 
+  /* ---------- video embed ---------- */
+  .video-embed{
+    position:relative;
+    padding-top:56.25%;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:36px;
+    box-shadow:0 8px 28px rgba(0,0,0,0.35);
+  }
+  .video-embed iframe{
+    position:absolute; top:0; left:0;
+    width:100%; height:100%;
+    border:0;
+  }
+
   /* ---------- project code shots ---------- */
   .proj-images{
     display:flex;
@@ -625,6 +640,10 @@
       <span class="pill">Longitud dinámica</span>
     </div>
 
+    <div class="video-embed">
+      <iframe src="https://player.vimeo.com/video/1226272092?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="VFX: Beam progresivo de anclaje — demo"></iframe>
+    </div>
+
     <div class="proj-notes" style="grid-template-columns:1fr 1fr;">
       <div class="note">
         <h4>Cómo funciona</h4>
@@ -646,11 +665,13 @@
           componente, para que el fade de salida ocurra con su propia
           curva de vida.
         </p>
-        <span class="note-flag">Video: grabación disponible, pendiente de subir en mejor calidad</span>
       </div>
     </div>
   </div>
 </section>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+
 
 <section class="certifiers">
   <div class="wrap">
